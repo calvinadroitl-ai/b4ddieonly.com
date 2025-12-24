@@ -1,0 +1,208 @@
+<!-- ================= login.html (FIXED) ================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>b4ddieonly – Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink:#ff7ac8;
+      --light-pink:#ffd1ea;
+      --yellow:#fff59d;
+      --black:#000;
+      --radius:14px;
+    }
+
+    *{ box-sizing:border-box; font-family:'Poppins',sans-serif; }
+    body{ margin:0; background:var(--pink); overflow:hidden; }
+
+    .page{ display:flex; height:100vh; }
+
+    .visual{
+      flex:1;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--light-pink);
+      min-width: 520px;
+    }
+
+    .visual img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      object-position:50% 65%;
+    }
+
+    .form{
+      width:460px;
+      height:100vh;
+      padding:clamp(16px, 3.2vh, 32px) 40px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      overflow:hidden;
+    }
+
+    h1{
+      font-size:clamp(30px, 4.2vh, 42px);
+      font-weight:800;
+      color:var(--yellow);
+      text-shadow:3px 3px 0 var(--black);
+      margin:0 0 4px 0;
+    }
+
+    h2{
+      margin:6px 0 clamp(14px, 2.6vh, 28px);
+      font-size:clamp(14px, 2.2vh, 18px);
+      font-weight:800;
+      color:var(--yellow);
+      text-shadow:2px 2px 0 var(--black);
+    }
+
+    label{ font-size:13px; font-weight:700; margin-bottom:6px; display:block; }
+
+    input{
+      width:100%;
+      padding:clamp(10px, 1.7vh, 14px) 16px;
+      border:2px solid var(--black);
+      border-radius:var(--radius);
+      background:var(--light-pink);
+      margin-bottom:clamp(10px, 1.6vh, 18px);
+      outline:none;
+    }
+
+    .row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:13px;
+      margin-bottom:clamp(14px, 2.0vh, 28px);
+    }
+
+    .checkbox{
+      display:grid;
+      grid-template-columns:24px 1fr;
+      align-items:start;
+      column-gap:12px;
+      font-weight:800;
+    }
+    .checkbox input{ accent-color:#000; margin-top:4px; }
+
+    .forgot{
+      color:#000;
+      font-weight:700;
+      text-decoration:none;
+    }
+    .forgot:visited{ color:#000; }
+
+    button{
+      width:100%;
+      padding:clamp(10px, 1.7vh, 14px);
+      border-radius:var(--radius);
+      border:2px solid var(--black);
+      background:var(--light-pink);
+      font-weight:800;
+      margin-bottom:clamp(10px, 1.6vh, 14px);
+      cursor:pointer;
+    }
+
+    @media (max-width:900px){
+      .page{ flex-direction:column; }
+      .visual{ flex:0 0 40vh; min-width:unset; }
+      .form{ width:100%; height:auto; }
+      body{ overflow:auto; }
+    }
+
+    @media (max-height:760px){
+      .form{ padding:16px 32px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="page">
+    <div class="visual">
+      <img src="assets/login.jpeg" alt="Login visual" />
+    </div>
+
+    <div class="form">
+      <h1>b4ddieonly</h1>
+      <h2>Welcome<br>Please login here</h2>
+
+      <form id="loginForm" novalidate>
+        <label for="loginEmail">Email Address</label>
+        <input id="loginEmail" type="email" autocomplete="email" required />
+
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" autocomplete="current-password" required />
+
+        <div class="row">
+          <div class="checkbox">
+            <input id="remember" type="checkbox" checked />
+            <label for="remember" style="margin:0;font-weight:800;">Remember me</label>
+          </div>
+          <a href="#" class="forgot" onclick="alert('Demo: fitur forgot password belum dibuat.'); return false;">Forgot Password?</a>
+        </div>
+
+        <div class="checkbox" style="margin:0 0 16px">
+          <input id="terms" type="checkbox" checked />
+          <label for="terms" style="margin:0;font-weight:800;">I agree to the Terms & Conditions</label>
+        </div>
+
+        <button type="submit" class="primary">Login</button>
+        <button type="button" class="secondary" onclick="window.location.href='signup.html'">Register Now</button>
+      </form>
+    </div>
+  </section>
+
+<script>
+  function getUsers(){
+    try { return JSON.parse(localStorage.getItem("users")) || []; }
+    catch { return []; }
+  }
+  
+  const current = localStorage.getItem("currentUser");
+  if(current){
+    window.location.href = "home.html";
+  }
+
+  const form = document.getElementById("loginForm");
+  const emailEl = document.getElementById("loginEmail");
+  const passEl  = document.getElementById("loginPassword");
+  const termsEl = document.getElementById("terms");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const email = emailEl.value.trim().toLowerCase();
+    const pass  = passEl.value;
+
+    if(!email || !pass) return alert("Email dan password wajib diisi.");
+    if(!termsEl.checked) return alert("Kamu harus setuju Terms & Conditions.");
+
+    const user = getUsers().find(u => u.email === email && u.pass === pass);
+    if(!user) return alert("Email atau password salah.");
+
+    localStorage.setItem("currentUser", JSON.stringify({ name: user.name, email: user.email }));
+    window.location.href = "home.html";
+  });
+
+document.getElementById("loginForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  try {
+    Auth.login(
+      document.getElementById("email").value,
+      document.getElementById("password").value
+    );
+    window.location.href = "home.html";
+  } catch (err) {
+    alert(err.message);
+  }
+});
+</script>
+
+</body>
+</html>

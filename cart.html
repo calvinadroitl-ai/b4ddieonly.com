@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>b4ddieonly – Cart</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink:#ff7ac8;
+      --blue:#8fc0ff;
+      --yellow:#fff59d;
+      --black:#000;
+      --white:#fff;
+
+      --border:3px solid var(--black);
+      --shadow:4px 4px 0 var(--black);
+      --shadow-sm:3px 3px 0 var(--black);
+
+      --r-xl:28px;
+      --r-md:18px;
+      --container:1500px;
+    }
+
+    *{box-sizing:border-box;font-family:'Poppins',sans-serif}
+    html,body{margin:0;padding:0}
+    body{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      background:var(--pink);
+      color:var(--black);
+    }
+    a{color:inherit;text-decoration:none}
+    button{font-family:inherit}
+
+    .container{width:min(var(--container), calc(100% - 56px));margin:0 auto}
+    main{flex:1}
+
+    /* NAV */
+    header{background:var(--blue);border-bottom:var(--border)}
+    .nav{
+      height:56px;
+      display:grid;
+      grid-template-columns: 320px 1fr 420px;
+      align-items:center;
+      gap:18px;
+    }
+    .brand{
+      font-weight:900;
+      font-size:30px;
+      color:var(--yellow);
+      text-shadow:4px 4px 0 var(--black);
+      -webkit-text-stroke:1.5px var(--black);
+      paint-order:stroke fill;
+      line-height:1;
+      white-space:nowrap;
+    }
+    .nav-links{
+      display:flex;
+      justify-content:center;
+      gap:54px;
+      font-weight:900;
+      font-size:15px;
+    }
+    .nav-right{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap:14px;
+    }
+    .search{
+      height:34px;width:180px;
+      border:var(--border);
+      border-radius:999px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:0 16px;
+    }
+    .search input{
+      border:none;outline:none;background:#fff;width:100%;
+      font-weight:900;font-size:14px
+    }
+    .icon-pill{
+      height:34px;
+      padding:0 20px;
+      border:var(--border);
+      border-radius:100px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:16px;
+      cursor:pointer;
+      white-space:nowrap;
+      box-shadow:var(--shadow-sm);
+    }
+    .cart-btn{width:44px;justify-content:center;padding:0}
+    .login-black{background:#000;color:#fff}
+
+    /* CART */
+    .wrap{padding:36px 0 50px;}
+    .title{
+      font-family:'Pacifico', cursive;
+      font-size:72px;
+      text-align:center;
+      margin:10px 0 8px;
+      color:var(--yellow);
+      text-shadow:4px 4px 0 var(--black);
+      -webkit-text-stroke:1.5px var(--black);
+      paint-order:stroke fill;
+      line-height:1;
+    }
+
+    .cart-area{
+      margin-top:10px;
+      border-top:2px solid rgba(0,0,0,.65);
+      padding-top:18px;
+    }
+
+    .cart-grid{
+      display:grid;
+      grid-template-columns: 1fr 520px;
+      gap:34px;
+      align-items:start;
+    }
+
+    .head-row{
+      display:grid;
+      grid-template-columns: 1fr 160px 180px;
+      gap:18px;
+      font-weight:900;
+      padding:10px 0 14px;
+    }
+    .divider{
+      height:2px;
+      background:rgba(0,0,0,.65);
+      margin:6px 0 18px;
+    }
+
+    /* ITEMS */
+    .items{display:flex;flex-direction:column;gap:18px;}
+    .item{
+      display:grid;
+      grid-template-columns: 130px 1fr 160px 180px;
+      gap:18px;
+      align-items:center;
+      padding:16px 0;
+      border-bottom:2px solid rgba(0,0,0,.65);
+    }
+    .thumb{
+      width:120px;height:120px;
+      border:var(--border);
+      border-radius:14px;
+      box-shadow:var(--shadow-sm);
+      background:#fff center/cover no-repeat;
+      margin-left:6px;
+    }
+    .meta h3{
+      margin:0 0 8px;
+      font-weight:900;
+      font-size:18px;
+      line-height:1.15;
+    }
+    .meta p{
+      margin:0 0 6px;
+      font-weight:900;
+      font-size:14px;
+    }
+    .remove{
+      display:inline-block;
+      margin-top:6px;
+      font-weight:900;
+      text-decoration:underline;
+      cursor:pointer;
+    }
+
+    .price{font-weight:900;font-size:16px}
+
+    .qty{
+      display:flex;
+      align-items:center;
+      border:2px solid var(--black);
+      border-radius:12px;
+      overflow:hidden;
+      height:36px;
+      width:140px;
+      background:#ffd1ea;
+      box-shadow:var(--shadow-sm);
+      justify-content:space-between;
+    }
+    .qty button{
+      width:42px;height:36px;
+      border:none;
+      background:transparent;
+      font-weight:900;
+      font-size:18px;
+      cursor:pointer;
+    }
+    .qty input{
+      width:50px;
+      text-align:center;
+      border:none;
+      outline:none;
+      background:transparent;
+      font-weight:900;
+      font-size:14px;
+    }
+
+    /* SUMMARY */
+    .summary{padding-top:10px;}
+    .wrap-opt{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-weight:900;
+      font-size:20px;
+      color:var(--white);
+      text-shadow:2px 2px 0 rgba(0,0,0,.45);
+      padding:14px 0 16px;
+      border-bottom:2px solid rgba(0,0,0,.65);
+    }
+    .wrap-opt input{width:22px;height:22px;accent-color:#000}
+
+    .sum-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-weight:900;
+      padding:22px 0 12px;
+      letter-spacing:.2px;
+    }
+    .sum-row .label{font-size:16px}
+    .sum-row .val{font-size:18px}
+
+    .checkout{
+      width:100%;
+      height:48px;
+      border:2px solid var(--black);
+      border-radius:12px;
+      background:#ffd1ea;
+      box-shadow:var(--shadow-sm);
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .empty{font-weight:900;padding:22px 0;opacity:.9}
+
+    /* FOOTER */
+    footer{
+      background:var(--blue);
+      border-top:var(--border);
+      padding:26px 0;
+      width:100%;
+    }
+    .foot{
+      display:grid;
+      grid-template-columns:1.4fr 1fr 1fr 1fr;
+      gap:22px;
+      align-items:start;
+    }
+    .foot h4{margin:0 0 10px;font-weight:900;font-size:18px}
+    .foot p,.foot a{margin:0 0 10px;font-weight:800;font-size:14px;line-height:1.25}
+    .foot a{display:block}
+
+    /* Responsive */
+    @media (max-width: 1160px){
+      .cart-grid{grid-template-columns:1fr;}
+      .summary{max-width:560px;margin-left:auto;}
+      .foot{grid-template-columns:1fr 1fr;}
+      .title{font-size:60px;}
+    }
+    @media (max-width: 1000px){
+      .nav{grid-template-columns:1fr;height:auto;padding:14px 0;gap:12px}
+      .nav-links{justify-content:flex-start;gap:18px}
+      .nav-right{justify-content:flex-start;flex-wrap:wrap}
+      .search{width:100%}
+
+      .head-row{grid-template-columns: 1fr 120px 160px;}
+      .item{grid-template-columns: 120px 1fr 120px 160px;}
+    }
+    @media (max-width: 780px){
+      .foot{grid-template-columns:1fr;}
+      .title{font-size:52px;}
+      .head-row{display:none;}
+      .item{
+        grid-template-columns: 120px 1fr;
+        grid-auto-rows:auto;
+      }
+      .price{grid-column:2;}
+      .qty{grid-column:2;}
+    }
+    @media (max-width: 640px){
+      .container{width:calc(100% - 28px)}
+      .title{font-size:46px;}
+      .thumb{width:110px;height:110px}
+      .qty{width:150px}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <nav class="nav">
+      <a class="brand" href="home.html">b4ddieonly</a>
+
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="fashion.html">Fashion</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="search" role="search">
+          <span style="font-weight:900">🔎</span>
+          <input type="search" placeholder="Search" aria-label="Search" />
+        </div>
+        <a class="icon-pill cart-btn" href="cart.html" aria-label="Cart">🛒</a>
+        <button class="icon-pill login-black" type="button" id="authBtn">Login</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="container">
+    <div class="title">Shopping Cart</div>
+
+    <section class="cart-area">
+      <div class="cart-grid">
+
+        <!-- LEFT: ITEMS -->
+        <div>
+          <div class="head-row">
+            <div></div>
+            <div>Price</div>
+            <div>Quantity</div>
+          </div>
+          <div class="divider"></div>
+
+          <div id="items" class="items"></div>
+          <div id="empty" class="empty" style="display:none;">
+            Cart kamu kosong. Ayo ke Fashion dulu, jangan pura-pura kuat.
+          </div>
+        </div>
+
+        <!-- RIGHT: SUMMARY -->
+        <aside class="summary">
+          <div class="wrap-opt">
+            <input type="checkbox" id="giftWrap" />
+            <label for="giftWrap">For <span id="wrapPriceText">Rp 10.000</span> please wrap the product</label>
+          </div>
+
+          <div class="sum-row">
+            <div class="label">Subtotal</div>
+            <div class="val" id="subtotalText">Rp 0</div>
+          </div>
+
+          <button class="checkout" type="button" id="btnCheckout">Checkout</button>
+        </aside>
+
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <div class="brand" style="font-size:28px">b4ddieonly</div>
+        <p style="margin-top:10px">worldwide fashion store since 2020, we sell 200 brand products on our website</p>
+        <p>📍 Sidoarjo, Indonesia</p>
+        <p>📞 +6289 465 2455</p>
+        <p>🌐 www.b4ddieonly.com</p>
+      </div>
+
+      <div>
+        <h4>Menu</h4>
+        <a href="fashion.html">Fashion</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <div>
+        <h4>Account</h4>
+        <a href="login.html">Login</a>
+        <a href="cart.html">My Cart</a>
+      </div>
+
+      <div>
+        <h4>Stay connected</h4>
+        <a href="#">Whatsapp</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // PENTING: harus sama dengan product.js
+  const CART_KEY = "cart";
+  const WRAP_FEE = 10000;
+
+  const rupiah = (n) => {
+    const s = Math.max(0, Math.round(Number(n) || 0)).toString();
+    return "Rp " + s.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
+
+  function loadCart(){
+    try{
+      const raw = localStorage.getItem(CART_KEY);
+      const parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed : [];
+    }catch(e){
+      return [];
+    }
+  }
+
+  function saveCart(cart){
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  }
+
+  // ===== Render =====
+  const elItems = document.getElementById("items");
+  const elEmpty = document.getElementById("empty");
+  const elSubtotal = document.getElementById("subtotalText");
+  const elWrap = document.getElementById("giftWrap");
+
+  let cart = loadCart();
+
+  function calcSubtotal(){
+    const itemsTotal = cart.reduce((sum, it) => sum + (Number(it.price || 0) * Number(it.qty || 1)), 0);
+    const wrap = elWrap.checked ? WRAP_FEE : 0;
+    return itemsTotal + wrap;
+  }
+
+  function updateSubtotal(){
+    elSubtotal.textContent = rupiah(calcSubtotal());
+  }
+
+  function render(){
+    elItems.innerHTML = "";
+
+    if(!cart.length){
+      elEmpty.style.display = "block";
+      updateSubtotal();
+      saveCart(cart);
+      return;
+    }
+    elEmpty.style.display = "none";
+
+    cart.forEach((it, idx) => {
+      const row = document.createElement("div");
+      row.className = "item";
+
+      // kompatibel: kalau item lama pakai "image", item baru pakai "img"
+      const imgSrc = it.img || it.image || "";
+
+      row.innerHTML = `
+        <div class="thumb" style="background-image:url('${imgSrc}')"></div>
+
+        <div class="meta">
+          <h3>${it.name || "Product"}</h3>
+          <p>Color: ${it.color || "—"}</p>
+          <span class="remove" data-remove="${idx}">Remove</span>
+        </div>
+
+        <div class="price">${rupiah(it.price)}</div>
+
+        <div class="qty">
+          <button type="button" data-minus="${idx}">−</button>
+          <input type="text" value="${it.qty || 1}" inputmode="numeric" data-qty="${idx}" />
+          <button type="button" data-plus="${idx}">+</button>
+        </div>
+      `;
+
+      elItems.appendChild(row);
+    });
+
+    updateSubtotal();
+    saveCart(cart);
+  }
+
+  // ===== Events (qty + remove) =====
+  document.addEventListener("click", (e) => {
+    const r = e.target.getAttribute("data-remove");
+    const m = e.target.getAttribute("data-minus");
+    const p = e.target.getAttribute("data-plus");
+
+    if(r !== null){
+      cart.splice(Number(r), 1);
+      render();
+      return;
+    }
+    if(m !== null){
+      const i = Number(m);
+      cart[i].qty = Math.max(1, (Number(cart[i].qty || 1) - 1));
+      render();
+      return;
+    }
+    if(p !== null){
+      const i = Number(p);
+      cart[i].qty = Math.min(99, (Number(cart[i].qty || 1) + 1));
+      render();
+      return;
+    }
+  });
+
+  document.addEventListener("input", (e) => {
+    const q = e.target.getAttribute("data-qty");
+    if(q === null) return;
+
+    const i = Number(q);
+    const v = String(e.target.value).replace(/[^\d]/g, "");
+    const num = Math.max(1, Math.min(99, Number(v || 1)));
+    cart[i].qty = num;
+    e.target.value = num;
+    updateSubtotal();
+    saveCart(cart);
+  });
+
+  elWrap.addEventListener("change", updateSubtotal);
+
+  document.getElementById("btnCheckout").addEventListener("click", () => {
+    alert("Checkout clicked. (Next: bikin page checkout / payment)");
+  });
+
+  // Init
+  document.getElementById("wrapPriceText").textContent = rupiah(WRAP_FEE);
+  render();
+</script>
+
+<script src="auth.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const authBtn = document.getElementById("authBtn");
+    if (!authBtn || !window.Auth) return;
+
+    if (Auth.isLoggedIn()) {
+      authBtn.textContent = "👤";
+      authBtn.classList.remove("login-black");
+      authBtn.onclick = () => (window.location.href = "account.html");
+    } else {
+      authBtn.textContent = "Login";
+      authBtn.classList.add("login-black");
+      authBtn.onclick = () => (window.location.href = "login.html");
+    }
+  });
+</script>
+
+</body>
+</html>

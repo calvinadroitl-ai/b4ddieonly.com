@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>b4ddieonly – Product</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink:#ff7ac8;
+      --blue:#8fc0ff;
+      --yellow:#fff59d;
+      --black:#000;
+      --white:#fff;
+
+      --border:3px solid var(--black);
+      --shadow:4px 4px 0 var(--black);
+      --shadow-sm:3px 3px 0 var(--black);
+
+      --r-xl:28px;
+      --container:1500px;
+    }
+
+    *{box-sizing:border-box;font-family:'Poppins',sans-serif}
+    html,body{margin:0;padding:0}
+    body{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      background:var(--pink);
+      color:var(--black);
+    }
+    a{color:inherit;text-decoration:none}
+    button{font-family:inherit}
+
+    .container{width:min(var(--container), calc(100% - 56px));margin:0 auto}
+    main.wrap{flex:1}
+
+    /* NAV */
+    header{background:var(--blue);border-bottom:var(--border)}
+    .nav{
+      height:56px;
+      display:grid;
+      grid-template-columns: 320px 1fr 420px;
+      align-items:center;
+      gap:18px;
+    }
+    .brand{
+      font-weight:900;
+      font-size:30px;
+      color:var(--yellow);
+      text-shadow:4px 4px 0 var(--black);
+      -webkit-text-stroke:1.5px var(--black);
+      paint-order:stroke fill;
+      line-height:1;
+      white-space:nowrap;
+    }
+    .nav-links{
+      display:flex;
+      justify-content:center;
+      gap:54px;
+      font-weight:900;
+      font-size:15px;
+    }
+    .nav-right{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap:14px;
+    }
+    .search{
+      height:34px;width:180px;
+      border:var(--border);
+      border-radius:999px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:0 16px;
+    }
+    .search input{
+      border:none;outline:none;background:#fff;width:100%;
+      font-weight:900;font-size:14px
+    }
+    .icon-pill{
+      height:34px;
+      padding:0 20px;
+      border:var(--border);
+      border-radius:100px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:16px;
+      cursor:pointer;
+      white-space:nowrap;
+      box-shadow:var(--shadow-sm);
+    }
+    .cart-btn{width:44px;justify-content:center;padding:0}
+    .login-black{background:#000;color:#fff}
+
+    /* PRODUCT */
+    .wrap{padding:46px 0 54px;}
+    .panel{
+      border:var(--border);
+      border-radius:var(--r-xl);
+      background:#fff59d;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+
+      display:grid;
+      grid-template-columns: 520px 1fr;
+      min-height:560px;
+    }
+
+    .p-left{
+      border-right:var(--border);
+      background:rgba(255,255,255,.6);
+      padding:18px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    /* portrait, fit */
+    .p-img{
+      width:100%;
+      max-width:480px;
+      aspect-ratio:3 / 4;
+      height:auto;
+
+      border:var(--border);
+      border-radius:22px;
+      box-shadow:var(--shadow-sm);
+
+      background:#fff center/cover no-repeat;
+    }
+
+    .p-right{
+      padding:28px 28px 24px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    /* ini yang bikin bagian bawah nempel bawah */
+    .p-bottom{margin-top:auto;}
+
+    .p-title{
+      margin:0 0 10px;
+      font-weight:900;
+      font-size:28px;
+      line-height:1.1;
+    }
+    .p-rating{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      font-weight:900;
+      margin-bottom:10px;
+    }
+    .stars{
+      letter-spacing:2px;
+      font-size:16px;
+      white-space:nowrap;
+    }
+    .p-price{
+      margin:8px 0 18px;
+      font-weight:900;
+      font-size:26px;
+    }
+
+    /* quantity + add sejajar */
+    .purchase-row{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      align-items:center;
+      gap:18px;
+      margin-bottom:14px;
+    }
+
+    .qty-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+    .qty-label{font-weight:900}
+
+    .qty{
+      display:flex;
+      align-items:center;
+      border:2px solid var(--black);
+      border-radius:12px;
+      overflow:hidden;
+      height:38px;
+      background:#ffd1ea;
+      box-shadow:var(--shadow-sm);
+    }
+    .qty button{
+      width:40px;height:38px;
+      border:none;
+      background:transparent;
+      font-weight:900;
+      font-size:18px;
+      cursor:pointer;
+    }
+    .qty input{
+      width:52px;
+      text-align:center;
+      border:none;
+      outline:none;
+      background:transparent;
+      font-weight:900;
+      font-size:14px;
+    }
+
+    .add{
+      height:38px;                 /* sama tinggi qty */
+      width:100%;
+      border:2px solid var(--black);
+      border-radius:12px;
+      background:#ffd1ea;
+      box-shadow:var(--shadow-sm);
+      font-weight:900;
+      cursor:pointer;
+    }
+
+    .actions{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      font-weight:900;
+      font-size:12px;
+      padding:10px 0 12px;
+      border-bottom:2px solid rgba(0,0,0,.25);
+      margin-bottom:12px;
+    }
+    .actions a{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      opacity:.95;
+    }
+
+    .info{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      font-weight:800;
+      font-size:12px;
+    }
+    .info div{display:flex;gap:10px;align-items:flex-start}
+
+    /* FOOTER */
+    footer{
+      background:var(--blue);
+      border-top:var(--border);
+      padding:26px 0;
+      width:100%;
+    }
+    .foot{
+      display:grid;
+      grid-template-columns:1.4fr 1fr 1fr 1fr;
+      gap:22px;
+      align-items:start;
+    }
+    .foot h4{margin:0 0 10px;font-weight:900;font-size:18px}
+    .foot p,.foot a{margin:0 0 10px;font-weight:800;font-size:14px;line-height:1.25}
+    .foot a{display:block}
+
+    /* Responsive */
+    @media (max-width: 1160px){
+      .foot{grid-template-columns:1fr 1fr;}
+    }
+    @media (max-width: 1000px){
+      .nav{grid-template-columns:1fr;height:auto;padding:14px 0;gap:12px}
+      .nav-links{justify-content:flex-start;gap:18px}
+      .nav-right{justify-content:flex-start;flex-wrap:wrap}
+      .search{width:100%}
+
+      .panel{grid-template-columns:1fr;}
+      .p-left{border-right:none;border-bottom:var(--border)}
+      .p-img{max-width:560px;aspect-ratio:3/4}
+
+      .purchase-row{
+        grid-template-columns:1fr; /* stack */
+        gap:12px;
+      }
+      .add{height:44px;} /* nyaman tap */
+    }
+    @media (max-width: 780px){
+      .foot{grid-template-columns:1fr;}
+    }
+    @media (max-width: 640px){
+      .container{width:calc(100% - 28px)}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <nav class="nav">
+      <a class="brand" href="home.html">b4ddieonly</a>
+
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="fashion.html">Fashion</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="search" role="search">
+          <span style="font-weight:900">🔎</span>
+          <input type="search" placeholder="Search" aria-label="Search" />
+        </div>
+        <a class="icon-pill cart-btn" href="cart.html" aria-label="Cart">🛒</a>
+        <button class="icon-pill login-black" href="account.html" id="authBtn">Login</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="container">
+    <section class="panel">
+      <div class="p-left">
+        <div class="p-img" id="pImg"></div>
+      </div>
+
+      <div class="p-right">
+        <div class="p-top">
+          <div class="p-rating">
+            <div class="stars" id="pStars">★★★★★</div>
+            <div id="pRateText">(5.0)</div>
+          </div>
+
+          <h1 class="p-title" id="pName">Product Name</h1>
+          <div class="p-price" id="pPrice">Rp 0</div>
+        </div>
+
+        <!-- bottom block = nempel bawah -->
+        <div class="p-bottom">
+          <div class="purchase-row">
+            <div class="qty-row">
+              <div class="qty-label">Quantity</div>
+              <div class="qty">
+                <button type="button" id="qtyMinus">−</button>
+                <input id="qtyVal" type="text" value="1" inputmode="numeric" />
+                <button type="button" id="qtyPlus">+</button>
+              </div>
+            </div>
+
+            <button class="add" type="button" id="btnAdd">Add to cart</button>
+          </div>
+
+          <div class="actions">
+            <a href="#" id="actCompare">⇄ Compare</a>
+            <a href="#" id="actAsk">❓ Ask a question</a>
+            <a href="#" id="actShare">⤴ Share</a>
+          </div>
+
+          <div class="info">
+            <div><span>🚚</span><span><b>Estimated Delivery:</b> Jul 30 - Aug 03</span></div>
+            <div><span>📦</span><span><b>Free Shipping & Returns:</b> On all orders over Rp 1.000.000</span></div>
+            <div><span>🔒</span><span><b>Secure Checkout:</b> Card / Transfer / E-Wallet</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <div class="brand" style="font-size:28px">b4ddieonly</div>
+        <p style="margin-top:10px">worldwide fashion store since 2020, we sell 200 brand products on our website</p>
+        <p>📍 Sidoarjo, Indonesia</p>
+        <p>📞 +6289 465 2455</p>
+        <p>🌐 www.b4ddieonly.com</p>
+      </div>
+
+      <div>
+        <h4>Menu</h4>
+        <a href="fashion.html">Fashion</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <div>
+        <h4>Account</h4>
+        <a href="login.html">Login</a>
+        <a href="#">My Cart</a>
+      </div>
+
+      <div>
+        <h4>Stay connected</h4>
+        <a href="#">Whatsapp</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="auth.js"></script>
+<script src="product.js"></script>
+</body>
+</html>

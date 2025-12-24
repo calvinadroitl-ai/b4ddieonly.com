@@ -1,0 +1,460 @@
+<!-- ================= fashion.html (FULL) ================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>b4ddieonly – Fashion</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink:#ff7ac8;
+      --pink-2:#ff64c1;
+      --blue:#8fc0ff;
+      --yellow:#fff59d;
+      --card-yellow:#fff6a7;
+      --black:#000;
+      --white:#fff;
+
+      --border:3px solid var(--black);
+      --shadow:4px 4px 0 var(--black);
+      --shadow-sm:3px 3px 0 var(--black);
+
+      --r-xl:28px;
+      --r-lg:22px;
+      --r-md:18px;
+      --r-sm:14px;
+
+      --container:1400px;
+    }
+
+    *{box-sizing:border-box;font-family:'Poppins',sans-serif}
+    body{margin:0;background:var(--pink);color:var(--black)}
+    a{color:inherit;text-decoration:none}
+    button,input{font-family:inherit}
+
+    .container{width:min(var(--container), calc(100% - 56px));margin:0 auto}
+
+    header{background:var(--blue);border-bottom:var(--border)}
+    .nav{
+      height:56px;
+      display:grid;
+      grid-template-columns: 320px 1fr 420px;
+      align-items:center;
+      gap:18px;
+    }
+    .brand{
+      font-weight:900;
+      font-size:30px;
+      color:var(--yellow);
+      text-shadow:4px 4px 0 var(--black);
+      -webkit-text-stroke:1.5px var(--black);
+      paint-order:stroke fill;
+      line-height:1;
+      white-space:nowrap;
+    }
+    .nav-links{
+      display:flex;
+      justify-content:center;
+      gap:54px;
+      font-weight:900;
+      font-size:15px;
+    }
+    .nav-right{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap:14px;
+    }
+    .search{
+      height:34px;width:180px;
+      border:var(--border);
+      border-radius:999px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      gap:5px;
+      padding:0 20px;
+    }
+    .search input{
+      border:none;outline:none;background:#fff;width:100%;
+      font-weight:900;font-size:16px
+    }
+    .icon-pill{
+      height:34px;
+      padding:0 20px;
+      border:var(--border);
+      border-radius:100px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      gap:5px;
+      font-size:18px;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .cart-btn{width:44px;justify-content:center;padding:0}
+    .login-black{background:#000;color:#fff}
+
+    /* ===== PAGE HEADER ===== */
+    .page{
+      padding:26px 0 30px;
+      border-bottom:var(--border);
+    }
+    .title{
+      text-align:center;
+      font-family:'Great Vibes', cursive;
+      font-size:96px;
+      margin:4px 0 0;
+      color:var(--yellow);
+      text-shadow:4px 4px 0 var(--black);
+      -webkit-text-stroke:1.5px var(--black);
+      paint-order:stroke fill;
+      letter-spacing:1px;
+    }
+    .sub{
+      width:min(680px, 92%);
+      margin:10px auto 22px;
+      background:#d9d9d9;
+      border:var(--border);
+      border-radius:var(--r-sm);
+      box-shadow:var(--shadow);
+      padding:12px 16px;
+      text-align:center;
+      font-size:16px;
+      font-weight:900;
+      line-height:1.25;
+    }
+
+    .products{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:26px;
+      overflow:visible;
+      padding-bottom:10px;
+    }
+    .card{
+      background:var(--card-yellow);
+      border:var(--border);
+      border-radius:var(--r-sm);
+      box-shadow:var(--shadow);
+      padding:16px;
+      transform:translateZ(0);
+      transition:transform .18s ease, box-shadow .18s ease;
+      transform-origin:center;
+      will-change:transform;
+    }
+    .card:hover{
+      transform:scale(1.045);
+      box-shadow:8px 8px 0 #000;
+      z-index:10;
+    }
+    .thumb{
+      border:var(--border);
+      border-radius:var(--r-sm);
+      background:#fff;
+      aspect-ratio:4/3;
+      box-shadow:3px 3px 0 var(--black);
+      margin-bottom:12px;
+      overflow:hidden;
+      background-size:cover;
+      background-position:center top;
+    }
+    .p-name{margin:0 0 4px;font-weight:900;font-size:16px}
+    .p-sub{margin:0 0 10px;font-weight:800;font-size:12px;opacity:.9}
+    .rating{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:900;margin-bottom:12px}
+    .stars{letter-spacing:2px}
+    .price{margin:0;font-weight:900;font-size:16px}
+
+    /* ===== FOOTER (same as home) ===== */
+    footer{background:var(--blue);border-top:var(--border);padding:26px 0}
+    .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:22px}
+    .foot h4{margin:0 0 10px;font-weight:900;font-size:18px}
+    .foot p,.foot a{margin:0 0 10px;font-weight:800;font-size:14px}
+    .foot a{display:block}
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1160px){
+      .nav{grid-template-columns:280px 1fr 380px}
+      .brand{font-size:38px}
+      .title{font-size:80px}
+      .products{grid-template-columns:repeat(3,1fr)}
+      .foot{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 780px){
+      .container{width:calc(100% - 28px)}
+      .nav{grid-template-columns:1fr;height:auto;padding:14px 0;gap:12px}
+      .nav-links{justify-content:flex-start;gap:18px}
+      .nav-right{justify-content:flex-start;flex-wrap:wrap}
+      .search{width:100%}
+      .title{font-size:72px}
+      .products{grid-template-columns:1fr}
+      .foot{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <nav class="nav">
+      <a class="brand" href="home.html">b4ddieonly</a>
+
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="fashion.html">Fashion</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="search" role="search">
+          <span style="font-weight:900">🔎</span>
+          <input type="search" placeholder="Search" aria-label="Search" />
+        </div>
+        <a class="icon-pill cart-btn" href="cart.html" aria-label="Cart">🛒</a>
+        <button class="icon-pill login-black" type="button" id="authBtn">Login</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <h1 class="title">Fashion</h1>
+    <div class="sub">
+      New season pieces, styled for everyday flex. Scroll, pick, and pretend you’re not about to checkout everything.
+    </div>
+
+    <section class="products" aria-label="Fashion products">
+      <!-- 12 items (copy/paste buat nambah) -->
+<article class="card product-card"
+  data-id="p01"
+  data-name="HOPHOP Varsity Crop Sweat"
+  data-price="389000"
+  data-rating="4.0"
+  data-img="assets/fashion1.jpg">
+  <div class="thumb" style="background-image:url('assets/fashion1.jpg')"></div>
+  <p class="p-name">HOPHOP Varsity Crop Sweat</p>
+  <p class="p-sub">All Kategori</p>
+  <div class="rating"><span>(4.0) Customer Review</span><span class="stars">★★★★☆</span></div>
+  <p class="price">Rp 389.000</p>
+</article>
+
+<article class="card product-card"
+  data-id="p02"
+  data-name="Candy Pop Mini Dress"
+  data-price="449000"
+  data-rating="4.0"
+  data-img="assets/fashion2.jpg">
+  <div class="thumb" style="background-image:url('assets/fashion2.jpg')"></div>
+  <p class="p-name">Candy Pop Mini Dress</p>
+  <p class="p-sub">All Kategori</p>
+  <div class="rating"><span>(4.0) Customer Review</span><span class="stars">★★★★☆</span></div>
+  <p class="price">Rp 449.000</p>
+</article>
+
+<article class="card product-card"
+  data-id="p03"
+  data-name="Chrome Chain Harness Set"
+  data-price="699000"
+  data-rating="4.0"
+  data-img="assets/fashion3.jpg">
+  <div class="thumb" style="background-image:url('assets/fashion3.jpg')"></div>
+  <p class="p-name">Chrome Chain Harness Set</p>
+  <p class="p-sub">All Kategori</p>
+  <div class="rating"><span>(4.0) Customer Review</span><span class="stars">★★★★☆</span></div>
+  <p class="price">Rp 699.000</p>
+</article>
+
+<article class="card product-card"
+  data-id="p04"
+  data-name="Midnight Cut Crop + Cargo"
+  data-price="519000"
+  data-rating="5.0"
+  data-img="assets/fashion4.jpg">
+  <div class="thumb" style="background-image:url('assets/fashion4.jpg')"></div>
+  <p class="p-name">Midnight Cut Crop + Cargo</p>
+  <p class="p-sub">All Kategori</p>
+  <div class="rating"><span>(5.0) Customer Review</span><span class="stars">★★★★★</span></div>
+  <p class="price">Rp 519.000</p>
+</article>
+
+<article class="card product-card"
+  data-id="p05"
+  data-name="Crimson Latex Skirt Set"
+  data-price="749000"
+  data-rating="5.0"
+  data-img="assets/fashion5.jpg">
+  <div class="thumb" style="background-image:url('assets/fashion5.jpg')"></div>
+  <p class="p-name">Crimson Latex Skirt Set</p>
+  <p class="p-sub">All Kategori</p>
+  <div class="rating"><span>(5.0) Customer Review</span><span class="stars">★★★★★</span></div>
+  <p class="price">Rp 749.000</p>
+</article>
+
+<article class="card product-card"
+  data-id="p06"
+  data-name="Zip Cutout Top + Arm Warmers"
+  data-price="459000"
+  data-rating="4.0"
+  data-img="assets/fashion6.jpg">
+  <div class="thumb" style="background-image:url('assets/fashion6.jpg')"></div>
+  <p class="p-name">Zip Cutout Top + Arm Warmers</p>
+  <p class="p-sub">All Kategori</p>
+  <div class="rating"><span>(4.0) Customer Review</span><span class="stars">★★★★☆</span></div>
+  <p class="price">Rp 459.000</p>
+</article>
+
+<article class="card product-card"
+  data-id="p07"
+  data-name="Street Luxe Bandana Set"
+  data-price="529000"
+  data-rating="5.0"
+  data-img="assets/fashion7.jpg">
+  <div class="thumb" style="background-image:url('assets/fashion7.jpg')"></div>
+  <p class="p-name">Street Luxe Bandana Set</p>
+  <p class="p-sub">All Kategori</p>
+  <div class="rating"><span>(5.0) Customer Review</span><span class="stars">★★★★★</span></div>
+  <p class="price">Rp 529.000</p>
+</article>
+
+<article class="card product-card"
+  data-id="p08"
+  data-name="TRY Cutout Tank + Micro Shorts"
+  data-price="349000"
+  data-rating="4.0"
+  data-img="assets/fashion8.jpg">
+  <div class="thumb" style="background-image:url('assets/fashion8.jpg')"></div>
+  <p class="p-name">TRY Cutout Tank + Micro Shorts</p>
+  <p class="p-sub">All Kategori</p>
+  <div class="rating"><span>(4.0) Customer Review</span><span class="stars">★★★★☆</span></div>
+  <p class="price">Rp 349.000</p>
+</article>
+
+<article class="card product-card"
+  data-id="p09"
+  data-name="CROSSED Leather Moto Set"
+  data-price="799000"
+  data-rating="3.0"
+  data-img="assets/fashion9.jpg">
+  <div class="thumb" style="background-image:url('assets/fashion9.jpg')"></div>
+  <p class="p-name">CROSSED Leather Moto Set</p>
+  <p class="p-sub">All Kategori</p>
+  <div class="rating"><span>(3.0) Customer Review</span><span class="stars">★★★☆☆</span></div>
+  <p class="price">Rp 799.000</p>
+</article>
+
+<article class="card product-card"
+  data-id="p10"
+  data-name="Denim Overall + Long Gloves"
+  data-price="579000"
+  data-rating="5.0"
+  data-img="assets/fashion10.jpg">
+  <div class="thumb" style="background-image:url('assets/fashion10.jpg')"></div>
+  <p class="p-name">Denim Overall + Long Gloves</p>
+  <p class="p-sub">All Kategori</p>
+  <div class="rating"><span>(5.0) Customer Review</span><span class="stars">★★★★★</span></div>
+  <p class="price">Rp 579.000</p>
+</article>
+
+<article class="card product-card"
+  data-id="p11"
+  data-name="Noir Minimal Crop Set"
+  data-price="429000"
+  data-rating="4.0"
+  data-img="assets/fashion11.jpg">
+  <div class="thumb" style="background-image:url('assets/fashion11.jpg')"></div>
+  <p class="p-name">Noir Minimal Crop Set</p>
+  <p class="p-sub">All Kategori</p>
+  <div class="rating"><span>(4.0) Customer Review</span><span class="stars">★★★★☆</span></div>
+  <p class="price">Rp 429.000</p>
+</article>
+
+<article class="card product-card"
+  data-id="p12"
+  data-name="Red Edge Street Top"
+  data-price="399000"
+  data-rating="4.0"
+  data-img="assets/fashion12.jpg">
+  <div class="thumb" style="background-image:url('assets/fashion12.jpg')"></div>
+  <p class="p-name">Red Edge Street Top</p>
+  <p class="p-sub">All Kategori</p>
+  <div class="rating"><span>(4.0) Customer Review</span><span class="stars">★★★★☆</span></div>
+  <p class="price">Rp 399.000</p>
+</article>
+
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <div class="brand" style="font-size:28px">b4ddieonly</div>
+        <p style="margin-top:10px">worldwide fashion store since 2020, we sell 200 brand products on our website</p>
+        <p>📍 Sidoarjo, Indonesia</p>
+        <p>📞 +6289 465 2455</p>
+        <p>🌐 www.b4ddieonly.com</p>
+      </div>
+
+      <div>
+        <h4>Menu</h4>
+        <a href="fashion.html">Fashion</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <div>
+        <h4>Account</h4>
+        <a href="account.html">Profil</a>
+        <a href="#">My Cart</a>
+      </div>
+
+      <div>
+        <h4>Stay connected</h4>
+        <a href="#">Whatsapp</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const authBtn = document.getElementById("authBtn");
+  if (window.Auth && authBtn) {
+    if (Auth.isLoggedIn()) {
+      authBtn.textContent = "👤";
+      authBtn.classList.remove("login-black");
+      authBtn.onclick = () => (window.location.href = "account.html");
+    } else {
+      authBtn.textContent = "Login";
+      authBtn.classList.add("login-black");
+      authBtn.onclick = () => (window.location.href = "login.html");
+    }
+  }
+
+  // product click
+  document.querySelectorAll(".product-card").forEach((card) => {
+    card.style.cursor = "pointer";
+    card.addEventListener("click", () => {
+      const p = {
+        id: card.dataset.id,
+        name: card.dataset.name,
+        price: Number(card.dataset.price || 0),
+        rating: Number(card.dataset.rating || 0),
+        img: card.dataset.img,
+      };
+      localStorage.setItem("selectedProduct", JSON.stringify(p));
+      window.location.href = "product.html";
+    });
+  });
+});
+</script>
+
+</body>
+</html>

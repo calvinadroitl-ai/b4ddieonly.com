@@ -1,0 +1,394 @@
+<!-- ================= about.html ================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>b4ddieonly – About</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink:#ff7ac8;
+      --pink-2:#ff64c1;
+      --blue:#8fc0ff;
+      --yellow:#fff59d;
+      --black:#000;
+      --white:#fff;
+      --card-yellow:#fff6a7;
+
+      --border:3px solid var(--black);
+      --shadow:4px 4px 0 var(--black);
+      --shadow-sm:3px 3px 0 var(--black);
+
+      --r-xl:28px;
+      --r-lg:22px;
+      --r-md:18px;
+      --r-sm:14px;
+
+      --container:1400px;
+    }
+
+    *{box-sizing:border-box;font-family:'Poppins',sans-serif}
+    body{margin:0;background:var(--pink);color:var(--black)}
+    a{color:inherit;text-decoration:none}
+    button{font-family:inherit}
+
+    .container{width:min(var(--container), calc(100% - 56px));margin:0 auto}
+
+    /* ===== NAV ===== */
+    header{background:var(--blue);border-bottom:var(--border)}
+    .nav{
+      height:56px;
+      display:grid;
+      grid-template-columns: 320px 1fr 420px;
+      align-items:center;
+      gap:18px;
+    }
+
+    .brand{
+      font-weight:900;
+      font-size:30px;
+      color:var(--yellow);
+      text-shadow:4px 4px 0 var(--black);
+      -webkit-text-stroke:1.5px var(--black);
+      paint-order:stroke fill;
+      line-height:1;
+      white-space:nowrap;
+    }
+
+    .nav-links{
+      display:flex;
+      justify-content:center;
+      gap:54px;
+      font-weight:900;
+      font-size:15px;
+    }
+
+    .nav-right{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap:14px;
+    }
+
+    .search{
+      height:34px;width:180px;
+      border:var(--border);
+      border-radius:999px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      gap:5px;
+      padding:0 20px;
+    }
+    .search input{
+      border:none;outline:none;background:#fff;width:100%;
+      font-weight:900;font-size:16px
+    }
+
+    .icon-pill{
+      height:34px;
+      padding:0 20px;
+      border:var(--border);
+      border-radius:100px;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      gap:5px;
+      font-size:18px;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+
+    .cart-btn{width:44px;justify-content:center;padding:0}
+    .login-black{background:#000;color:#fff}
+
+    /* ===== ABOUT HERO ===== */
+    .about-band{padding:56px 0 24px;border-bottom:var(--border)}
+    .about-title{
+      text-align:center;
+      font-family:'Great Vibes', cursive;
+      font-size:96px;
+      margin:0;
+      color:var(--yellow);
+      text-shadow:4px 4px 0 var(--black);
+      -webkit-text-stroke:1.5px var(--black);
+      paint-order:stroke fill;
+      letter-spacing:1px;
+      line-height:1;
+    }
+
+    .about-sub{
+      width:min(760px, 96%);
+      margin:14px auto 0;
+      background:#d9d9d9;
+      border:var(--border);
+      border-radius:var(--r-sm);
+      box-shadow:var(--shadow);
+      padding:12px 16px;
+      text-align:center;
+      font-size:16px;
+      font-weight:900;
+      line-height:1.25;
+    }
+
+    /* ===== CONTENT ===== */
+    .section{padding:34px 0 46px}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:26px;
+      align-items:start;
+    }
+
+    .panel{
+      border:var(--border);
+      border-radius:var(--r-xl);
+      background:var(--white);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel-inner{padding:22px}
+
+    .lead{
+      margin:0 0 14px;
+      font-weight:900;
+      font-size:18px;
+    }
+
+    .para{
+      margin:0 0 12px;
+      font-weight:800;
+      font-size:15px;
+      line-height:1.4;
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .chip{
+      border:var(--border);
+      border-radius:999px;
+      background:var(--card-yellow);
+      box-shadow:var(--shadow-sm);
+      padding:8px 12px;
+      font-weight:900;
+      font-size:13px;
+      white-space:nowrap;
+    }
+
+    .side-card{
+      border:var(--border);
+      border-radius:var(--r-xl);
+      background:var(--card-yellow);
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+
+    .side-title{
+      margin:0 0 10px;
+      font-weight:900;
+      font-size:18px;
+    }
+
+    .side-row{
+      border:var(--border);
+      border-radius:var(--r-sm);
+      background:#fff;
+      box-shadow:var(--shadow-sm);
+      padding:12px 14px;
+      margin-bottom:12px;
+      font-weight:900;
+      font-size:14px;
+      line-height:1.3;
+    }
+
+    .cta{
+      width:100%;
+      height:52px;
+      border:var(--border);
+      border-radius:16px;
+      background:#111;
+      color:#fff;
+      font-weight:900;
+      font-size:16px;
+      cursor:pointer;
+      box-shadow:var(--shadow-sm);
+      margin-top:6px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer{background:var(--blue);border-top:var(--border);padding:26px 0}
+    .foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:22px}
+    .foot h4{margin:0 0 10px;font-weight:900;font-size:18px}
+    .foot p,.foot a{margin:0 0 10px;font-weight:800;font-size:14px}
+    .foot a{display:block}
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1160px){
+      .nav{grid-template-columns:280px 1fr 380px}
+      .brand{font-size:28px}
+      .grid{grid-template-columns:1fr}
+      .about-title{font-size:76px}
+      .foot{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 780px){
+      .container{width:calc(100% - 28px)}
+      .nav{grid-template-columns:1fr;height:auto;padding:14px 0;gap:12px}
+      .nav-links{justify-content:flex-start;gap:18px}
+      .nav-right{justify-content:flex-start;flex-wrap:wrap}
+      .search{width:100%}
+      .about-title{font-size:64px}
+      .foot{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <nav class="nav">
+      <a class="brand" href="home.html">b4ddieonly</a>
+
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="fashion.html">Fashion</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="search" role="search">
+            <span style="font-weight:900">🔎</span>
+            <input type="search" placeholder="Search" aria-label="Search" />
+        </div>
+        <a class="icon-pill cart-btn" href="cart.html" aria-label="Cart">🛒</a>
+        <button class="icon-pill login-black" type="button" id="authBtn">Login</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="about-band">
+    <div class="container">
+      <h1 class="about-title">About</h1>
+      <div class="about-sub">
+        b4ddieonly itu tempat kamu cari outfit yang keliatan “mahal”, tapi tetap santai dipakai harian.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid">
+
+        <div class="panel">
+          <div class="panel-inner">
+            <p class="lead">So… b4ddieonly itu web apa?</p>
+
+            <p class="para">
+              b4ddieonly adalah web fashion store yang ngumpulin style “high-end energy” buat kamu yang pengen tampil
+              rapi, edgy, dan beda tanpa harus overthinking.
+            </p>
+            <p class="para">
+              Kita fokus ke pieces yang gampang di-mix: basic yang clean, statement yang ngena, dan layer yang bikin look kamu naik kelas.
+            </p>
+            <p class="para">
+              Di sini kamu bisa scroll, pilih outfit, dan pura-pura kuat… padahal pengen checkout semuanya.
+            </p>
+            <p class="para">
+              Intinya: kalau kamu suka style yang bold tapi tetap wearable, kamu lagi di rumah yang benar.
+            </p>
+
+            <div class="chips">
+              <div class="chip">Selected materials</div>
+              <div class="chip">Clean silhouettes</div>
+              <div class="chip">Statement layers</div>
+              <div class="chip">Everyday flex</div>
+              <div class="chip">Made to look expensive</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="side-card">
+          <p class="side-title">What we’re about</p>
+
+          <div class="side-row">
+            <strong>Vibe:</strong> clean + edgy + confident<br>
+            Biar simple tapi tetap “wah”.
+          </div>
+
+          <div class="side-row">
+            <strong>Goal:</strong> bikin kamu gampang styling<br>
+            Tinggal pakai, langsung jadi.
+          </div>
+
+          <div class="side-row">
+            <strong>Where:</strong> Sidoarjo, Indonesia<br>
+            Siap gas buat worldwide mood.
+          </div>
+
+          <button class="cta" type="button" onclick="window.location.href='fashion.html'">Explore Fashion</button>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <div class="brand" style="font-size:28px">b4ddieonly</div>
+        <p style="margin-top:10px">worldwide fashion store since 2020, we sell 200 brand products on our website</p>
+        <p>📍 Sidoarjo, Indonesia</p>
+        <p>📞 +6289 465 2455</p>
+        <p>🌐 www.b4ddieonly.com</p>
+      </div>
+
+      <div>
+        <h4>Menu</h4>
+        <a href="fashion.html">Fashion</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <div>
+        <h4>Account</h4>
+        <a href="login.html">Login</a>
+        <a href="#">My Cart</a>
+      </div>
+
+      <div>
+        <h4>Stay connected</h4>
+        <a href="#">Whatsapp</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.Auth) {
+      Auth.bindAuthButton("authBtn", {
+        loggedOutText: "Login",
+        loggedInText: "👤",
+        loggedOutHref: "login.html",
+        accountHref: "account.html",
+        loggedOutClass: "login-black"
+      });
+    }
+  });
+</script>
+</body>
+</html>

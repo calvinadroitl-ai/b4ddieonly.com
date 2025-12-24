@@ -1,0 +1,235 @@
+<!-- ================= signup.html (FIXED) ================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>b4ddieonly – Signup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --pink:#ff7ac8;
+      --light-pink:#ffd1ea;
+      --yellow:#fff59d;
+      --black:#000;
+      --radius:14px;
+    }
+    *{box-sizing:border-box;font-family:'Poppins',sans-serif}
+    body{margin:0;background:var(--pink);overflow-x:hidden}
+
+    .page{display:flex;min-height:100vh}
+    .visual{
+      flex:1.2;
+      background:url("assets/signup.jpeg") center top/cover no-repeat;
+      height:100vh;
+    }
+
+    .form{
+      width:460px;
+      height:100vh;
+      padding:32px 40px;
+      overflow-y:auto;
+      overscroll-behavior:contain;
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+    }
+
+    h1{
+      font-size:42px;
+      font-weight:800;
+      color:var(--yellow);
+      text-shadow:3px 3px 0 var(--black);
+      margin:0;
+    }
+    h2{
+      margin:6px 0 28px;
+      font-size:18px;
+      font-weight:800;
+      color:var(--yellow);
+      text-shadow:2px 2px 0 var(--black);
+    }
+
+    label{font-size:13px;font-weight:700;margin-bottom:6px;display:block}
+    input{
+      width:100%;
+      padding:14px 16px;
+      border:2px solid var(--black);
+      border-radius:var(--radius);
+      background:var(--light-pink);
+      margin-bottom:18px;
+      outline:none;
+    }
+
+    .checkbox{
+      display:grid;
+      grid-template-columns:24px 1fr;
+      align-items:start;
+      column-gap:12px;
+      font-weight:800;
+      margin: 2px 0 18px;
+    }
+    .checkbox input{accent-color:#000;margin-top:4px}
+
+    button{
+      width:100%;
+      padding:14px;
+      border-radius:var(--radius);
+      border:2px solid var(--black);
+      background:var(--light-pink);
+      font-weight:800;
+      cursor:pointer;
+    }
+    .muted{
+      margin-top:14px;
+      font-size:13px;
+      font-weight:800;
+    }
+    .muted a{ text-decoration: underline; }
+
+    .form::-webkit-scrollbar{width:0;height:0}
+
+    @media(max-width:900px){
+      .page{flex-direction:column}
+      .visual{height:40vh}
+      .form{width:100%}
+    }
+
+    @media(max-height:760px){
+      .form{padding:20px 32px}
+      h1{font-size:36px}
+      h2{margin:6px 0 18px;font-size:16px}
+      input{padding:10px 14px;margin-bottom:12px}
+      button{padding:12px}
+    }
+  </style>
+</head>
+<body>
+
+<section class="page">
+  <div class="visual"></div>
+
+  <div class="form">
+    <h1>b4ddieonly</h1>
+    <h2>Create New Account<br>Please enter details</h2>
+
+    <form id="signupForm" novalidate>
+      <label for="firstName">First Name</label>
+      <input id="firstName" type="text" autocomplete="given-name" required />
+
+      <label for="lastName">Last Name</label>
+      <input id="lastName" type="text" autocomplete="family-name" required />
+
+      <label for="email">Email Address</label>
+      <input id="email" type="email" autocomplete="email" required />
+
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="new-password" required />
+
+      <label for="address">Address</label>
+      <input id="address" type="text" autocomplete="street-address" required />
+
+      <div class="checkbox">
+        <input id="terms" type="checkbox" checked />
+        <label for="terms" style="margin:0; font-weight:800;">I agree to the Terms & Conditions</label>
+      </div>
+
+      <button type="submit" class="secondary">Signup</button>
+
+      <div class="muted">
+        Already have an account?
+        <a href="login.html">Login</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  function getUsers(){
+    try { return JSON.parse(localStorage.getItem("users")) || []; }
+    catch { return []; }
+  }
+  function saveUsers(users){
+    localStorage.setItem("users", JSON.stringify(users));
+  }
+
+  const already = localStorage.getItem("currentUser");
+  if(already){
+    window.location.href = "home.html";
+  }
+
+  const form = document.getElementById("signupForm");
+  const firstNameEl = document.getElementById("firstName");
+  const lastNameEl  = document.getElementById("lastName");
+  const emailEl     = document.getElementById("email");
+  const passEl      = document.getElementById("password");
+  const addressEl   = document.getElementById("address");
+  const termsEl     = document.getElementById("terms");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const firstName = firstNameEl.value.trim();
+    const lastName  = lastNameEl.value.trim();
+    const name      = (firstName + " " + lastName).trim();
+    const email     = emailEl.value.trim().toLowerCase();
+    const pass      = passEl.value;
+    const address   = addressEl.value.trim();
+
+    if(!firstName || !lastName) return alert("Nama depan & belakang wajib diisi.");
+    if(!email) return alert("Email wajib diisi.");
+    if(!pass) return alert("Password wajib diisi.");
+    if(pass.length < 6) return alert("Password minimal 6 karakter.");
+    if(!address) return alert("Address wajib diisi.");
+    if(!termsEl.checked) return alert("Kamu harus setuju Terms & Conditions.");
+
+    const users = getUsers();
+    if(users.some(u => u.email === email)){
+      alert("Email sudah terdaftar. Silakan login.");
+      window.location.href = "login.html";
+      return;
+    }
+
+    users.push({
+      name,
+      email,
+      pass,
+      address,
+      createdAt: Date.now()
+    });
+    saveUsers(users);
+
+  Auth.signup({ firstName, lastName, email, password, address }, { autoLogin:false });
+window.location.href = "login.html";
+  });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("signupForm");
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const firstName = document.getElementById("firstName")?.value;
+    const lastName  = document.getElementById("lastName")?.value;
+    const email     = document.getElementById("email")?.value;
+    const password  = document.getElementById("password")?.value;
+    const address   = document.getElementById("address")?.value;
+    const terms     = document.getElementById("terms")?.checked;
+
+    if (!terms) return alert("Kamu harus setuju Terms & Conditions.");
+
+    try {
+      Auth.signup({ firstName, lastName, email, password, address });
+      window.location.href = "home.html";
+    } catch (err) {
+      alert(err.message || "Signup gagal.");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
